@@ -1,3 +1,4 @@
+import sys
 import mysql.connector
 import pandas as pd
 
@@ -12,10 +13,10 @@ chembl_csv.columns = chembl_columns
 
 # Connect to MySQL databse
 db = mysql.connector.connect(
-    host="********",
-    user="********",
-    password="********",
-    database="chembl_35" # this should be "chembl_35" by default
+    host=sys.argv[1],
+    user=sys.argv[2],
+    password=sys.argv[3],
+    database=sys.argv[4],
 )
 
 # Labels for the compound_properties table
@@ -53,16 +54,16 @@ print(f"Dropped {len(cols_to_drop)} columns:", cols_to_drop)
 print("Drop criteria: Null rate above 30%; string values\n")
 
 # Cleanup bad rows
-rows_to_drop = []
+rows_to_drop = {}
 for j in dataset.index:
     if pd.isna(dataset.iloc[j]).sum():
         for col in pd.isna(dataset.iloc[j]).index[pd.isna(dataset.iloc[j]).values]:
             # If the null rate for the column is below 1%, we delete the row
             if pd.isna(dataset[col]).sum() / len(dataset) < 0.01:
-                rows_to_drop.append(j)
+                rows_to_drop[j] = None
                 break
 
-rows_to_drop = rows_to_drop
+rows_to_drop = list(rows_to_drop.keys())
 dataset.drop(rows_to_drop, inplace=True)
 print(f"Dropped {len(rows_to_drop)} rows:", rows_to_drop)
 print("Drop criteria: Row has null and the corresponding column's null rate is less than 1%\n")

@@ -7,13 +7,8 @@ This is the source code for running the Gamma regression predictions for predict
 ```bash
 git clone https://github.com/dinodev24/antimalarial-potency-prediction
 cd antimalarial-potency-prediction/
-python -m venv .venv/
-source .venv/Scripts/activate # Or .venv/bin/activate for Linux or MacOS
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
-python -m jupyter notebook
+python quick_setup.py
 ```
-(Click prediction.ipynb)
 
 ## Project Structure
 
@@ -22,6 +17,7 @@ python -m jupyter notebook
 ├── database.py       # Python code for collecting the ChEMBL descriptors
 ├── dataset.csv       # Processed and cleaned code
 ├── prediction.ipynb  # Notebook with further cleaning and training code
+├── quick_setup.py    # Python code for setting up environment and installing dependencies.
 ├── README.md
 ├── requirements.txt
 └── requirements-dev.txt
