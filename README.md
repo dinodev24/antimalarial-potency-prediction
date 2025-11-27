@@ -30,4 +30,4 @@ python quick_setup.py
 - ChEMBL: https://www.ebi.ac.uk/chembl/
 
 ### Tools & Libraries
-- Pandas, NumPy, Statsmodels, Matplotlib
+- Pandas, NumPy, Statsmodels, Matplotlib, SciPy

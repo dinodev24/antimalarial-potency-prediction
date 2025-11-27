@@ -9,12 +9,14 @@ def run_command(command: list, check=True, stdout=subprocess.DEVNULL, stderr=Non
     """
     Function for running command in a subprocess.
     """
+
     subprocess.run(command, check=check, stdout=stdout, stderr=stderr)
 
 def create_venv():
     """
     Create a new virtual environment if it doesn't exist.
     """
+
     if not os.path.exists(VENV_DIR):
         print("Creating virtual environment ...")
         run_command([sys.executable, "-m", "venv", VENV_DIR])
@@ -26,6 +28,7 @@ def install_requirements():
     """
     Installs requirements and development requirements (jupyter) from requirements files.
     """
+
     print("Installing dependencies ...")
 
     if os.name == "nt":
@@ -43,6 +46,7 @@ def execute_notebook():
     """
     Execute the notebook so it has the results.
     """
+
     print(f"Executing notebook {NOTEBOOK} ...")
 
     if os.name == "nt":
@@ -59,6 +63,7 @@ def open_jupyter_lab():
     """
     Open the notebook in Jupyter Lab.
     """
+
     print("Launching JupyterLab ...")
 
     if os.name == "nt":
